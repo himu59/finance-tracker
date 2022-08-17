@@ -1,3 +1,3 @@
-<h2>Welcome page</h2>
+<h2>Welcome to Finance Tracker App</h2>
 
-<%= link_to "Sign out", destroy_user_session_path, data: { "turbo-method": :delete }%>
+<%= link_to :logout, destroy_user_session_path, :method => :delete  %>
