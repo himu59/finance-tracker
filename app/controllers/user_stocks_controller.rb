@@ -1,9 +1,14 @@
 class UserStocksController < ApplicationController
 
     def create
-        stock = Stock.check_db(params[:ticker])
-
-        if stock
+        user_id = params[:user]
+        st = Stock.where(ticker: params[:ticker]).first
+        stock_id = nil
+        if !st.nil?
+            stock_id = st.id
+        end
+        stock = Stock.check_db(stock_id,user_id)
+        if !stock.nil?
             flash[:notice] = "Stock is already present in your portfolio"
         end
         if stock.nil? #if doesnt exit we get from api call
@@ -11,7 +16,8 @@ class UserStocksController < ApplicationController
             if !stock.nil?
                 stock.save
             end   
-            @user_stock = UserStock.create(user: current_user, stock: stock)
+            # debugger
+            @user_stock = UserStock.create(user_id: user_id, stock_id: stock.id)
             flash[:notice] = "Stock was successfully added to your portfolio"
         end
         redirect_to my_portfolio_path

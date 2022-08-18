@@ -1,7 +1,7 @@
 <h1>My Portfolio</h1>
 <div style="padding-top: 40px;">
     <h3>Search Stock</h3>
-    <%= form_tag "search_stock",remote: true, method: :get do %>
+    <%= form_tag "search_stock", method: :get do %>
         <div class="form-group row">
             <div class="col-sm-9">
                 <%= text_field_tag :stock, params[:stock], placeholder: "Stock Ticker Symbol", autofocus: true, class: "form-control form-control-lg" %>
@@ -20,6 +20,6 @@
 </div>
 
 
-<% if !@tracked_stocks.nil? %>
+<% if @tracked_stocks %>
     <%= render "stocks/list" %>
 <% end %>

@@ -17,8 +17,10 @@ class Stock < ApplicationRecord
         end
     end
     
-    def self.check_db(ticker_symbol)
+    def self.check_db(stock_id,user_id)
         #return object of stock if it is present in our db
-        return where(ticker: ticker_symbol).first
+        user_stock = UserStock.where(user_id: user_id, stock_id: stock_id).first
+        return user_stock
     end
+    
 end

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'my_portfolio_update', to: 'users#my_portfolio_update'
   get "user_stock", to: "user_stocks#destroy"
   resources :user_stocks, only: [:create, :destroy]
   root "welcome#index"
